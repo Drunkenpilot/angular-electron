@@ -2,6 +2,7 @@ import 'reflect-metadata';
 import '../polyfills';
 
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
@@ -18,17 +19,25 @@ import { HomeModule } from './home/home.module';
 
 import { AppComponent } from './app.component';
 import { IconsProviderModule } from './icons-provider.module';
+import { NgZorroAntdModule, NZ_I18N, zh_CN } from 'ng-zorro-antd';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
 
+import zh from '@angular/common/locales/zh';
+import { registerLocaleData, CommonModule } from '@angular/common';
+
+registerLocaleData(zh);
+
 @NgModule({
   declarations: [AppComponent],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     FormsModule,
+    CommonModule,
     HttpClientModule,
     CoreModule,
     SharedModule,
@@ -41,9 +50,12 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
         deps: [HttpClient]
       }
     }),
-    IconsProviderModule
+    IconsProviderModule,
+    NgZorroAntdModule
   ],
-  providers: [],
+  providers: [
+    { provide: NZ_I18N, useValue: zh_CN }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

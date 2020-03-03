@@ -93,6 +93,7 @@
   },
   "dependencies": {
     "@angular/animations": "9.0.4",
-    "ng-zorro-antd": "8.5.2"
+    "ng-zorro-antd": "8.5.2",
+    "uuid": "7.0.1"
   }
 }

@@ -1,0 +1,9 @@
+UUID 1 
+<button nz-button nzType="default" (click)="generate()" >Default</button>
+<ng-container *ngIf="uuid_1.length>0" >
+    <ul >
+        <li *ngFor="let uuid of uuid_1" >
+            {{uuid}}
+        </li>
+    </ul>
+</ng-container>
